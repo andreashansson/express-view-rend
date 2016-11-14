@@ -3,19 +3,38 @@ var path = require("path");
 var app = express();
 var cons = require('consolidate');
 var request = require("request");
+var bodyParser = require('body-parser');
 
+var myObj;
 var login;
 var throttled;
 var unlimited;
+
+app.use(bodyParser());
 
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
+var middleware = function(req, res, next) {
+
+
+
+}
+
+app.get('/api', function(req, res, next) {
+
+  res.json({
+    "loggedIn": false,
+    "trottled": true,
+    "unlimited": false
+  });
+});
+
 app.get('/', function(req, res, next) {
 
-  request("http://localhost:1338", function(error, response, body) {
-    var myobj = JSON.parse(response.body);
+  request("http://localhost:1337/api", function(error, response, body) {
+    myobj = JSON.parse(response.body);
     login = myobj.loggedIn;
     throttled = myobj.throttled;
     unlimited = myobj.unlimited;
@@ -24,7 +43,7 @@ app.get('/', function(req, res, next) {
   next();
 
 }, function(req, res, next) {
-  if (!login) {
+  if (!login && login!==undefined) {
     res.render("login");
   }
   else {
