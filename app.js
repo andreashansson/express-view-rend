@@ -16,12 +16,6 @@ app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
-var middleware = function(req, res, next) {
-
-
-
-}
-
 app.get('/api', function(req, res, next) {
 
   res.json({
@@ -43,7 +37,7 @@ app.get('/', function(req, res, next) {
   next();
 
 }, function(req, res, next) {
-  if (!login && login!==undefined) {
+  if (!login) {
     res.render("login");
   }
   else {
