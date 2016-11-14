@@ -28,7 +28,7 @@ app.get('/api', function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
-  res.send("Andreas");
+  res.render('login.html');
 });
 
 app.listen(port, function() {
