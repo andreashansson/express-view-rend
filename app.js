@@ -10,6 +10,9 @@ var login;
 var throttled;
 var unlimited;
 
+var port = process.env.PORT || 1337);
+
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.engine('html', cons.swig)
