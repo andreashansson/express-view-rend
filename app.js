@@ -29,10 +29,44 @@ app.get('/api', function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
-  res.send("hej jag funkar");
+
+  request("http://localhost:1337/api", function(error, response, body) {
+    myobj = JSON.parse(response.body);
+    login = myobj.loggedIn;
+    throttled = myobj.throttled;
+    unlimited = myobj.unlimited;
+  });
+
+  next();
+
+}, function(req, res, next) {
+  if (!login) {
+    res.render("login");
+  }
+  else {
+    next();
+  }
+}, function(req, res, next) {
+
+  if (unlimited) {
+    res.render("unlimited");
+  }
+  else {
+    next();
+  }
+
+}, function(req, res, next) {
+  if (throttled) {
+    res.render("throttled");
+  }
+  else {
+    next();
+  }
+}, function(req, res, next) {
+  if (!throttled) {
+    res.render("unthrottled");
+  }
 });
-
-
 
 app.listen(port, function() {
   console.log("App listening on port: " + port);
