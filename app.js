@@ -34,8 +34,8 @@ app.get('/', function(req, res, next) {
 
 
 
-app.listen(1337, function() {
-  console.log("App listening on port 1337");
+app.listen(port, function() {
+  console.log("App listening on port: " + port);
 });
 
 /*
