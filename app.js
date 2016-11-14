@@ -28,7 +28,7 @@ app.get('/api', function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
-  res.json("Andreas");
+  res.send("Andreas");
 });
 
 app.listen(port, function() {
