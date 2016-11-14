@@ -26,6 +26,17 @@ app.get('/api', function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
+  res.send("hej jag funkar");
+});
+
+
+
+app.listen(1337, function() {
+  console.log("App listening on port 1337");
+});
+
+/*
+app.get('/', function(req, res, next) {
 
   request("http://localhost:1337/api", function(error, response, body) {
     myobj = JSON.parse(response.body);
@@ -65,6 +76,4 @@ app.get('/', function(req, res, next) {
   }
 });
 
-app.listen(1337, function() {
-  console.log("App listening on port 1337");
-});
+*/
