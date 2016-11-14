@@ -10,7 +10,7 @@ var login;
 var throttled;
 var unlimited;
 
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
